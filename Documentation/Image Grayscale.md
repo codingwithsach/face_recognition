@@ -1597,9 +1597,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, the `display_image` function now allows the user to delete comments for the current image by pressing the 'd' key during the display loop. If a comment exists for the current image, it will be deleted and a corresponding message will be displayed. Adjust the `image_paths` list with the paths to your images and modify the `csv_file` variable as needed.
+the `display_image` function now allows the user to delete comments for the current image by pressing the 'd' key during the display loop. If a comment exists for the current image, it will be deleted and a corresponding message will be displayed. Adjust the `image_paths` list with the paths to your images and modify the `csv_file` variable as needed.
 
-Certainly! Let's continue by adding a feature to display a summary of user inputs and comments at the end of the interactive session. This summary will include the image titles, keys pressed, and comments. Additionally, we'll provide an option for the user to save this summary to a text file for future reference:
+adding a feature to display a summary of user inputs and comments at the end of the interactive session. This summary will include the image titles, keys pressed, and comments. Additionally, we'll provide an option for the user to save this summary to a text file for future reference:
 
 ```python
 import cv2
@@ -1766,9 +1766,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, the `display_summary` function is added to print a summary of user inputs and comments at the end of the interactive session. Additionally, the `save_summary_to_file` function is introduced to save this summary to a text file. Adjust the `image_paths` list with the paths to your images and modify the `csv_file` variable as needed.
+the `display_summary` function is added to print a summary of user inputs and comments at the end of the interactive session. Additionally, the `save_summary_to_file` function is introduced to save this summary to a text file. Adjust the `image_paths` list with the paths to your images and modify the `csv_file` variable as needed.
 
-Certainly! Let's further enhance the code by providing an option for the user to load an existing summary from a text file. We'll create a function called `load_summary_from_file` to load the summary from a text file and display it. Additionally, we'll improve the formatting of the displayed summary:
+providing an option for the user to load an existing summary from a text file. We'll create a function called `load_summary_from_file` to load the summary from a text file and display it. Additionally, we'll improve the formatting of the displayed summary:
 
 ```python
 import cv2
@@ -1969,9 +1969,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, the `load_summary_from_file` function is added to load an existing summary from a text file, and the example usage is updated to demonstrate loading both user inputs from a CSV file and a summary from a text file. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+the `load_summary_from_file` function is added to load an existing summary from a text file, and the example usage is updated to demonstrate loading both user inputs from a CSV file and a summary from a text file. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a feature to allow the user to update comments in the summary. We'll modify the `display_summary` function to interactively prompt the user for comment updates and update the summary accordingly.
+to allow the user to update comments in the summary. We'll modify the `display_summary` function to interactively prompt the user for comment updates and update the summary accordingly.
 
 ```python
 import cv2
