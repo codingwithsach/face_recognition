@@ -63,7 +63,7 @@ else:
     plt.show()
 ```
 
-In this code, `plt.imshow()` is used to display the images, and `plt.subplot()` is used to arrange the original and grayscale images side by side. The `cmap='gray'` argument is specified for the grayscale image to ensure it is displayed correctly.
+ `plt.imshow()` is used to display the images, and `plt.subplot()` is used to arrange the original and grayscale images side by side. The `cmap='gray'` argument is specified for the grayscale image to ensure it is displayed correctly.
 
 Remember to install the necessary libraries if you haven't already:
 
@@ -200,7 +200,7 @@ else:
     plt.close()
 ```
 
-In this version, Step 4 resizes the original and grayscale images using `cv2.resize()` for better visualization. You can adjust the dimensions `(800, 600)` to suit your preference.
+Step 4 resizes the original and grayscale images using `cv2.resize()` for better visualization. You can adjust the dimensions `(800, 600)` to suit your preference.
 
 ```python
 import cv2
@@ -253,64 +253,9 @@ image_path = 'path/to/your/image.jpg'
 display_images(image_path)
 ```
 
-In this version, the code is encapsulated in a function named `display_images`, making it more modular and easier to reuse. You can call this function with different image paths to display and process multiple images.
+the code is encapsulated in a function named `display_images`, making it more modular and easier to reuse. You can call this function with different image paths to display and process multiple images.
 
-Certainly! Let's continue by addressing the issue of the program not terminating properly if the user closes the window using the close button. We'll use the `plt.show(block=False)` method to ensure that the window is non-blocking, allowing the program to continue running even when the window is open. Additionally, we'll add a loop to check for user input or window closure:
-
-```python
-import cv2
-import matplotlib.pyplot as plt
-
-def display_images(image_path):
-    # Step 1: Read the image
-    original_image = cv2.imread(image_path)
-
-    # Step 2: Check if the image is loaded successfully
-    if original_image is None:
-        print(f"Error: Unable to load the image at {image_path}")
-        return
-
-    # Step 3: Convert the image to grayscale
-    grayscale_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
-
-    # Step 4: Resize images for better visualization
-    resized_original = cv2.resize(original_image, (800, 600))
-    resized_grayscale = cv2.resize(grayscale_image, (800, 600))
-
-    # Step 5: Display the original and grayscale images using matplotlib
-    plt.subplot(1, 2, 1)
-    plt.imshow(cv2.cvtColor(resized_original, cv2.COLOR_BGR2RGB))
-    plt.title('Original Image')
-
-    plt.subplot(1, 2, 2)
-    plt.imshow(resized_grayscale, cmap='gray')
-    plt.title('Grayscale Image')
-
-    # Step 6: Save the grayscale image (optional)
-    cv2.imwrite('path/to/save/grayscale_image.jpg', grayscale_image)
-
-    # Step 7: Show the images (non-blocking)
-    plt.show(block=False)
-
-    # Step 8: Loop to check for user input or window closure
-    while True:
-        key = cv2.waitKey(1)  # Check for key events every 1 ms
-
-        if key == 27:  # 27 is the ASCII code for the Esc key
-            print("Window closed by user.")
-            break
-        elif key != -1:
-            print(f"Key pressed: {chr(key)}")
-
-    # Step 9: Close the plot window
-    plt.close()
-
-# Example usage:
-image_path = 'path/to/your/image.jpg'
-display_images(image_path)
-```
-
-In this version, the `plt.show(block=False)` is used to make the plot window non-blocking, and a `while` loop is added to continuously check for key events or window closure. The loop exits when the user presses the Esc key or closes the window. This way, the program will terminate gracefully even if the user closes the window using the close button.
+addressing the issue of the program not terminating properly if the user closes the window using the close button. We'll use the `plt.show(block=False)` method to ensure that the window is non-blocking, allowing the program to continue running even when the window is open. Additionally, we'll add a loop to check for user input or window closure:
 
 ```python
 import cv2
@@ -366,6 +311,61 @@ display_images(image_path)
 ```
 
 In this version, the `plt.show(block=False)` is used to make the plot window non-blocking, and a `while` loop is added to continuously check for key events or window closure. The loop exits when the user presses the Esc key or closes the window. This way, the program will terminate gracefully even if the user closes the window using the close button.
+
+```python
+import cv2
+import matplotlib.pyplot as plt
+
+def display_images(image_path):
+    # Step 1: Read the image
+    original_image = cv2.imread(image_path)
+
+    # Step 2: Check if the image is loaded successfully
+    if original_image is None:
+        print(f"Error: Unable to load the image at {image_path}")
+        return
+
+    # Step 3: Convert the image to grayscale
+    grayscale_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
+
+    # Step 4: Resize images for better visualization
+    resized_original = cv2.resize(original_image, (800, 600))
+    resized_grayscale = cv2.resize(grayscale_image, (800, 600))
+
+    # Step 5: Display the original and grayscale images using matplotlib
+    plt.subplot(1, 2, 1)
+    plt.imshow(cv2.cvtColor(resized_original, cv2.COLOR_BGR2RGB))
+    plt.title('Original Image')
+
+    plt.subplot(1, 2, 2)
+    plt.imshow(resized_grayscale, cmap='gray')
+    plt.title('Grayscale Image')
+
+    # Step 6: Save the grayscale image (optional)
+    cv2.imwrite('path/to/save/grayscale_image.jpg', grayscale_image)
+
+    # Step 7: Show the images (non-blocking)
+    plt.show(block=False)
+
+    # Step 8: Loop to check for user input or window closure
+    while True:
+        key = cv2.waitKey(1)  # Check for key events every 1 ms
+
+        if key == 27:  # 27 is the ASCII code for the Esc key
+            print("Window closed by user.")
+            break
+        elif key != -1:
+            print(f"Key pressed: {chr(key)}")
+
+    # Step 9: Close the plot window
+    plt.close()
+
+# Example usage:
+image_path = 'path/to/your/image.jpg'
+display_images(image_path)
+```
+
+the `plt.show(block=False)` is used to make the plot window non-blocking, and a `while` loop is added to continuously check for key events or window closure. The loop exits when the user presses the Esc key or closes the window. This way, the program will terminate gracefully even if the user closes the window using the close button.
 
 ```python
 import cv2
@@ -2202,7 +2202,7 @@ else:
 
 In this version, the `update_summary_comments` function is added to interactively prompt the user to update comments in the summary. The example usage is updated to demonstrate this new functionality. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a feature to allow the user to delete entries from both the main user inputs and the summary. We'll create functions `delete_entry` and `delete_entry_from_summary` to handle these deletions interactively.
+adding a feature to allow the user to delete entries from both the main user inputs and the summary. We'll create functions `delete_entry` and `delete_entry_from_summary` to handle these deletions interactively.
 
 ```python
 import cv2
@@ -2489,9 +2489,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, two new functions, `delete_entry` and `delete_entry_from_summary`, are added to handle the deletion of entries from the main user inputs and the summary, respectively. The example usage is updated to demonstrate these new functionalities. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+two new functions, `delete_entry` and `delete_entry_from_summary`, are added to handle the deletion of entries from the main user inputs and the summary, respectively. The example usage is updated to demonstrate these new functionalities. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a few more features. We'll add the ability to navigate through the summary entries and display images associated with each summary entry. Additionally, we'll include an option to clear all comments in the summary.
+adding a few more features. We'll add the ability to navigate through the summary entries and display images associated with each summary entry. Additionally, we'll include an option to clear all comments in the summary.
 
 ```python
 import cv2
@@ -2823,9 +2823,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, two new functions, `navigate_summary` and `clear_summary_comments`, are added to allow the user to navigate through summary entries and display associated images, as well as to clear all comments in the summary. The example usage is updated to demonstrate these new functionalities. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+two new functions, `navigate_summary` and `clear_summary_comments`, are added to allow the user to navigate through summary entries and display associated images, as well as to clear all comments in the summary. The example usage is updated to demonstrate these new functionalities. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding an option to save the current state of user inputs and comments at any point during the interaction. We'll create a function called `save_state` that allows the user to save the current data to a specified file.
+adding an option to save the current state of user inputs and comments at any point during the interaction. We'll create a function called `save_state` that allows the user to save the current data to a specified file.
 
 ```python
 import cv2
@@ -2996,9 +2996,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `save_state` is added to save the current state of user inputs and comments to a JSON file. The example usage is updated to include an option for the user to save the current state at any point during the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `save_state` is added to save the current state of user inputs and comments to a JSON file. The example usage is updated to include an option for the user to save the current state at any point during the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a feature to load a saved state from a JSON file. We'll create a function called `load_state` that allows the user to load a previously saved state.
+adding a feature to load a saved state from a JSON file. We'll create a function called `load_state` that allows the user to load a previously saved state.
 
 ```python
 import cv2
@@ -3187,9 +3187,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, the code is updated to include a new function called `load_state`, which loads a saved state from a JSON file. Additionally, the `display_images` function is modified to include the option to load a saved state during the interaction. The example usage is updated to demonstrate this new functionality. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+the code is updated to include a new function called `load_state`, which loads a saved state from a JSON file. Additionally, the `display_images` function is modified to include the option to load a saved state during the interaction. The example usage is updated to demonstrate this new functionality. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to display statistics about the user inputs, such as the distribution of key presses and the number of comments for each image. We'll create a function called `display_statistics` for this purpose.
+Let's add a feature to display statistics about the user inputs, such as the distribution of key presses and the number of comments for each image. We'll create a function called `display_statistics` for this purpose.
 
 ```python
 import cv2
@@ -3395,9 +3395,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `display_statistics` is added to display statistics about the user inputs, including the distribution of key presses and the number of comments for each image. The example usage is updated to include displaying statistics at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `display_statistics` is added to display statistics about the user inputs, including the distribution of key presses and the number of comments for each image. The example usage is updated to include displaying statistics at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to visualize the distribution of key presses using a bar chart. We'll create a function called `visualize_key_distribution` for this purpose.
+Let's add a feature to visualize the distribution of key presses using a bar chart. We'll create a function called `visualize_key_distribution` for this purpose.
 
 ```python
 import cv2
@@ -3617,9 +3617,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `visualize_key_distribution` is added to display a bar chart showing the distribution of key presses. The example usage is updated to include visualizing the key distribution at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `visualize_key_distribution` is added to display a bar chart showing the distribution of key presses. The example usage is updated to include visualizing the key distribution at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add the final piece to the code: a function to display the images and associated comments in a slideshow mode. The user can navigate through the images and comments in a sequential manner. We'll create a function called `slideshow` for this purpose.
+Let's add the final piece to the code: a function to display the images and associated comments in a slideshow mode. The user can navigate through the images and comments in a sequential manner. We'll create a function called `slideshow` for this purpose.
 
 ```python
 import cv2
@@ -3886,9 +3886,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function called `slideshow` is added to display the images and associated comments in a sequential manner. The user can navigate through the images and comments in a slideshow mode. The example usage is updated to include starting the slideshow at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function called `slideshow` is added to display the images and associated comments in a sequential manner. The user can navigate through the images and comments in a slideshow mode. The example usage is updated to include starting the slideshow at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to compare the original and grayscale images side by side in the slideshow mode. Additionally, we'll include an option to toggle between the original and grayscale views during the slideshow. We'll create a function called `slideshow_compare` for this purpose.
+Let's add a feature to compare the original and grayscale images side by side in the slideshow mode. Additionally, we'll include an option to toggle between the original and grayscale views during the slideshow. We'll create a function called `slideshow_compare` for this purpose.
 
 ```python
 import cv2
@@ -4125,9 +4125,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `slideshow_compare` is added to display the original and grayscale images side by side in a sequential manner. The user can toggle between the original and grayscale views during the slideshow. The example usage is updated to include starting the slideshow with image comparison at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `slideshow_compare` is added to display the original and grayscale images side by side in a sequential manner. The user can toggle between the original and grayscale views during the slideshow. The example usage is updated to include starting the slideshow with image comparison at the end of the interaction. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a few more features to enhance the functionality of the program. Specifically, we'll add the ability to export the comments to a CSV file, and we'll include a function to search for comments based on keywords. We'll create functions called `export_comments_to_csv` and `search_comments` for these purposes.
+Let's add a few more features to enhance the functionality of the program. Specifically, we'll add the ability to export the comments to a CSV file, and we'll include a function to search for comments based on keywords. We'll create functions called `export_comments_to_csv` and `search_comments` for these purposes.
 
 ```python
 import cv2
@@ -4316,9 +4316,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, two new functions, `export_comments_to_csv` and `search_comments`, are added. The example usage is updated to include options for exporting comments to a CSV file (`'e'`) and searching for comments based on keywords (`'k'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+two new functions, `export_comments_to_csv` and `search_comments`, are added. The example usage is updated to include options for exporting comments to a CSV file (`'e'`) and searching for comments based on keywords (`'k'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a feature to display a histogram of pixel intensities for both the original and grayscale images. Additionally, we'll include an option to save the histograms as images. We'll create functions called `display_histogram` and `save_histogram_image` for these purposes.
+Let's continue by adding a feature to display a histogram of pixel intensities for both the original and grayscale images. Additionally, we'll include an option to save the histograms as images. We'll create functions called `display_histogram` and `save_histogram_image` for these purposes.
 
 ```python
 import cv2
@@ -4509,9 +4509,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, two new functions, `display_histogram` and `save_histogram_image`, are added. The example usage is updated to include options for displaying the histogram (`'h'`) and saving the histogram image (`'i'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+two new functions, `display_histogram` and `save_histogram_image`, are added. The example usage is updated to include options for displaying the histogram (`'h'`) and saving the histogram image (`'i'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to apply a simple image processing filter to the images during the slideshow. We'll create a function called `apply_filter` to perform this operation. In this example, we'll use the OpenCV function `cv2.GaussianBlur` for a Gaussian blur filter, but you can customize it based on your needs.
+Let's add a feature to apply a simple image processing filter to the images during the slideshow. We'll create a function called `apply_filter` to perform this operation. In this example, we'll use the OpenCV function `cv2.GaussianBlur` for a Gaussian blur filter, but you can customize it based on your needs.
 
 ```python
 import cv2
@@ -4703,9 +4703,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `apply_filter` is added to apply a filter to the images during the slideshow. The example usage is updated to include the option to apply a filter (`'f'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `apply_filter` is added to apply a filter to the images during the slideshow. The example usage is updated to include the option to apply a filter (`'f'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add one more feature to allow the user to rotate the displayed images during the slideshow. We'll create a function called `rotate_image` for this purpose.
+Let's add one more feature to allow the user to rotate the displayed images during the slideshow. We'll create a function called `rotate_image` for this purpose.
 
 ```python
 import cv2
@@ -4904,9 +4904,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `rotate_image` is added to rotate the images during the slideshow. The example usage is updated to include the option to rotate the image (`'r'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `rotate_image` is added to rotate the images during the slideshow. The example usage is updated to include the option to rotate the image (`'r'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add one more feature to resize the displayed images during the slideshow. We'll create a function called `resize_image` for this purpose.
+Let's add one more feature to resize the displayed images during the slideshow. We'll create a function called `resize_image` for this purpose.
 
 ```python
 import cv2
@@ -5113,9 +5113,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `resize_image` is added to resize the images during the slideshow. The example usage is updated to include the option to resize the image (`'z'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `resize_image` is added to resize the images during the slideshow. The example usage is updated to include the option to resize the image (`'z'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to flip the displayed images during the slideshow. We'll create a function called `flip_image` for this purpose.
+Let's add a feature to flip the displayed images during the slideshow. We'll create a function called `flip_image` for this purpose.
 
 ```python
 import cv2
@@ -5324,9 +5324,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `flip_image` is added to flip the images during the slideshow. The example usage is updated to include the option to flip the image (`'x'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `flip_image` is added to flip the images during the slideshow. The example usage is updated to include the option to flip the image (`'x'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to adjust the brightness and contrast of the displayed images during the slideshow. We'll create a function called `adjust_brightness_contrast` for this purpose.
+Let's add a feature to adjust the brightness and contrast of the displayed images during the slideshow. We'll create a function called `adjust_brightness_contrast` for this purpose.
 
 ```python
 import cv2
@@ -5542,9 +5542,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `adjust_brightness_contrast` is added to adjust the brightness and contrast of the images during the slideshow. The example usage is updated to include the option to adjust the brightness and contrast (`'b'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `adjust_brightness_contrast` is added to adjust the brightness and contrast of the images during the slideshow. The example usage is updated to include the option to adjust the brightness and contrast (`'b'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's add a feature to apply edge detection to the displayed images during the slideshow. We'll create a function called `detect_edges` for this purpose.
+Let's add a feature to apply edge detection to the displayed images during the slideshow. We'll create a function called `detect_edges` for this purpose.
 
 ```python
 import cv2
@@ -5778,9 +5778,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `detect_edges` is added to apply edge detection to the images during the slideshow. The example usage is updated to include the option to detect edges (`'d'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `detect_edges` is added to apply edge detection to the images during the slideshow. The example usage is updated to include the option to detect edges (`'d'`). Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's enhance the functionality by adding an option to display the original and processed images side by side during the slideshow. We'll create a function called `display_images_side_by_side` for this purpose.
+Let's enhance the functionality by adding an option to display the original and processed images side by side during the slideshow. We'll create a function called `display_images_side_by_side` for this purpose.
 
 ```python
 import cv2
@@ -6007,9 +6007,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `display_images_side_by_side` is added to display the original and processed images side by side during the slideshow. The example usage is updated to include this option. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
+a new function `display_images_side_by_side` is added to display the original and processed images side by side during the slideshow. The example usage is updated to include this option. Adjust the `image_paths`, `csv_file`, and `summary_file` variables as needed.
 
-Certainly! Let's continue by adding a feature to save the processed images during the slideshow. We'll create a function called `save_processed_images` for this purpose.
+Let's continue by adding a feature to save the processed images during the slideshow. We'll create a function called `save_processed_images` for this purpose.
 
 ```python
 import cv2
@@ -6262,9 +6262,9 @@ else:
     print("Error: Unable to load one or more images.")
 ```
 
-In this version, a new function `save_processed_images` is added to save the processed images to a specified folder. The example usage is updated to include this option. Adjust the `image_paths`, `csv_file`, `summary_file`, and `output_folder` variables as needed.
+a new function `save_processed_images` is added to save the processed images to a specified folder. The example usage is updated to include this option. Adjust the `image_paths`, `csv_file`, `summary_file`, and `output_folder` variables as needed.
 
-Certainly! Let's continue by incorporating a feature to view the history of processed images during the slideshow. We'll create a function called `display_image_history` to show the history of processed images for a specific image.
+incorporating a feature to view the history of processed images during the slideshow. We'll create a function called `display_image_history` to show the history of processed images for a specific image.
 
 ```python
 import cv2
